@@ -1,0 +1,48 @@
+<h1 align="center"><%= "#{@team.name}'s" %> Team Page</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <% if @team_departments %>
+      <% if @team_departments.count > 0 %>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th colspan="4" class="page-header">
+                <h2>Departments of <%= "#{@team.name}" %></h2>
+              </th>
+            </tr>
+            <tr>
+              <th>Name</th>
+              <th>Number of Members</th>
+              <th>Department Since<th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @team_departments.each do |department| %>
+              <tr>
+                <td><%= department.name %></td>
+                <td><%= department.users.count %></td>
+                <td><%= department.created_at.localtime.strftime("%B %d, %Y at %I:%M%p") %></td>
+                <td>
+                  <%= link_to "View", department_path(department), class: "btn btn-primary btn-xs" %>
+                  <% if current_user.department.id != department.id %>
+                    <%= link_to "Join", join_department_path(department), class: "btn btn-primary btn-xs", data: {confirm: "Are you sure you want to join this department? Joining this department removes you from all other departments"} %>
+                  <% else %>
+                    <span class="label label-default">
+                      This is your department.
+                    </span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <h3>There are no departments available for this Team.</h3>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <h2 align="center">Current Challenge Progress</h2>
+  </div>
+</div>

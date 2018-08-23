@@ -1,0 +1,23 @@
+<% obj.each do |user| %>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="well well-lg">
+        <div class="user-name">
+          <%= user.full_name %>
+        </div>
+        <div class="user-list">
+          Total Number of Reps: [To Be Added Later]
+          <div class="user-meta-details">
+            <small>User Since: <%= time_ago_in_words(user.created_at) %> ago</small>
+          </div>
+        </div>
+        <div class="user-actions">
+          <%= link_to "View User", user_path(user), class: 'btn btn-xs btn-primary' %>
+          <% if current_user.id == user.id %>
+            <%= link_to "Edit User", edit_user_registration_path, title: 'Edit Profile', class: 'btn btn-xs btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

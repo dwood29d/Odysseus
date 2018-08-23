@@ -1,0 +1,39 @@
+<h1 align="center"><%= "#{current_user.full_name}" %>'s Page</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <% if current_user.id == @user.id %>
+      <h2>Add Reps</h2>
+      <%= form_for(@user, html: {class: "form-horizontal", role: "form", method: "post"}, url: add_exercise_path) do |f| %>
+        <div class="form-group">
+          <div class="control-label col-md-2">
+            <%= label_tag(:number_of_reps, "Number of Reps:") %>
+          </div>
+          <div class="col-sm-8">
+            <%= number_field(:number_of_reps, class: "form-control") %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="control-label col-md-2">
+            <%= label_tag(:exercises, "Exercise:") %>
+          </div>
+          <div class="col-sm-8">
+            <%= f.select(:exercises) do %>
+              <%= options_from_collection_for_select(@exercises, 'id', 'name', params[:exercise_id].to_i) %>
+            <% end %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <%= f.submit class: 'btn btn-primary btn-lg' %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <h2>Something goes here when I'm not this user</h2>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <h2>Testing second half of page</h2>
+  </div>
+</div>

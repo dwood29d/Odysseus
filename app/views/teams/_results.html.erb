@@ -1,0 +1,43 @@
+<% if params[:action] == 'search' %>
+  <div class="results-block">
+    <%= bootstrap_flash %>
+  </div>
+<% end %>
+
+<% if @teams %>
+  <% if @teams.count > 0 %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th colspan="2" class="page-header">
+            <h2>Teams</h2>
+          </th>
+        </tr>
+        <tr>
+          <th>Name</th>
+          <th>Team Since<th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @teams.each do |team| %>
+          <tr>
+            <td><%= team.name %></td>
+            <td><%= team.created_at.localtime.strftime("%B %d, %Y at %I:%M%p") %></td>
+            <td>
+              <%= link_to "View", team_path(team), class: "btn btn-primary btn-xs" %>
+              <% if current_user.team.id != team.id %>
+                <%= link_to "Join", join_team_path(team), class: "btn btn-primary btn-xs", data: {confirm: "Are you sure you want to join this team? Joining this team removes you from all other teams"} %>
+              <% else %>
+                <span class="label label-default">
+                  You are already a member of this team.
+                </span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h3>No teams exist for these search results</h3>
+  <% end %>
+<% end %>

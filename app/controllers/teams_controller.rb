@@ -2,6 +2,7 @@ class TeamsController < ApplicationController
 
   def index
     @teams = Team.all
+    @team = Team.new()
   end
 
   def new
@@ -11,10 +12,11 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
     if @team.save
-      flash[:success] = "Congratulations! #{@team.name} has successfully been created!"
+      flash.now[:success] = "Congratulations! #{@team.name} has successfully been created!"
       redirect_to team_path(@team)
     else
-      render 'new'
+      flash.now[:danger] = "There was a problem creating your team. Check if your team already exists."
+      render 'index'
     end
   end
 

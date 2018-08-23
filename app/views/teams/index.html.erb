@@ -1,22 +1,44 @@
-<h1 align="center">Find Teams</h1>
+<h1 align="center">Teams</h1>
 
-<div id="team-lookup">
-  <%= form_tag search_teams_path, remote: true, method: :get, id: "team-lookup-form" do %>
-    <div class="form-group row no-padding text-center col-md-12">
-      <div class="col-md-10">
-        <%= text_field_tag :search_param, params[:search_param], placeholder: "Enter name of team", autofocus: true,
-                  class: "form-control search-box input-lg" %>
+<div class="row">
+
+  <div class="col-md-6" id="create-team">
+    <h2 align="center">Create Your Team</h2>
+    <%= form_for(@team, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+      <div class="form-group">
+        <div class="col-md-2">
+          <h3><%= f.label :name %></h3>
+        </div>
+        <div class="col-md-9">
+          <%= f.text_field :name, placeholder: "Enter name to create team", class: 'form-control input-lg' %>
+        </div>
       </div>
-      <div class="col-md-2">
-        <%= button_tag(type: :submit, class: "btn btn-lg btn-success") do %>
-          <i class="fa fa-search"></i> Search
-        <% end %>
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-3">
+          <%= f.submit("Create Team", class: 'btn btn-primary btn-md') %>
+        </div>
       </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-6" id="team-lookup">
+    <h2 align="center">Find Your Team</h2>
+    <%= form_tag search_teams_path, remote: true, method: :get, id: "team-lookup-form" do %>
+      <div class="form-group row no-padding text-center col-md-12">
+        <div class="col-md-10">
+          <%= text_field_tag :search_param, params[:search_param], placeholder: "Enter name of team", autofocus: true,
+                    class: "form-control search-box input-lg" %>
+        </div>
+        <div class="col-md-2">
+          <%= button_tag(type: :submit, class: "btn btn-lg btn-success") do %>
+            <i class="fa fa-search"></i> Search
+          <% end %>
+        </div>
+      </div>
+
+    <% end %>
+    <div  id="results">
+      <%= render 'results' %>
     </div>
-
-  <% end %>
-</div>
-
-<div id="results">
-  <%= render 'results' %>
+  </div>
 </div>

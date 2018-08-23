@@ -8,6 +8,16 @@ class DepartmentsController < ApplicationController
     @department = Department.new()
   end
 
+  def create
+    @department = Department.new(team_params)
+    if @department.save
+      flash[:success] = "Congratulations! #{@department.name} has successfully been created!"
+      redirect_to team_path(@department)
+    else
+      render 'new'
+    end
+  end
+
   def show
     @department = Department.find(params[:id])
     # @department_challenges = Department.challenges

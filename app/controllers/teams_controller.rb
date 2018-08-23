@@ -1,8 +1,11 @@
 class TeamsController < ApplicationController
 
+  require 'pry'
+
   def index
     @teams = Team.all
     @team = Team.new()
+    @my_team = current_user.team
   end
 
   def new
@@ -11,6 +14,7 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
+    binding.pry
     if @team.save
       flash.now[:success] = "Congratulations! #{@team.name} has successfully been created!"
       redirect_to team_path(@team)

@@ -25,7 +25,7 @@
                 <td><%= department.created_at.localtime.strftime("%B %d, %Y at %I:%M%p") %></td>
                 <td>
                   <%= link_to "View", department_path(department), class: "btn btn-primary btn-xs" %>
-                  <% if current_user.department.id != department.id %>
+                  <% if current_user.department != department %>
                     <%= link_to "Join", join_department_path(department), class: "btn btn-primary btn-xs", data: {confirm: "Are you sure you want to join this department? Joining this department removes you from all other departments"} %>
                   <% else %>
                     <span class="label label-default">

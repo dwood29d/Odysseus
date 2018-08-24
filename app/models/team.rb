@@ -1,6 +1,7 @@
 class Team < ApplicationRecord
   has_many :user_teams
   has_many :users, through: :user_teams
+  has_many :user_exercises, through: :users
   has_many :departments
   has_many :challenges, through: :department
   validates :name, presence: true,

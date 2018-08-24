@@ -25,12 +25,12 @@
             <td><%= team.created_at.localtime.strftime("%B %d, %Y at %I:%M%p") %></td>
             <td>
               <%= link_to "View", team_path(team), class: "btn btn-primary btn-xs" %>
-              <% if current_user.team.id != team.id %>
-                <%= link_to "Join", join_team_path(team), class: "btn btn-primary btn-xs", data: {confirm: "Are you sure you want to join this team? Joining this team removes you from all other teams"} %>
-              <% else %>
+              <% if current_user.has_team? and current_user.team = team %>
                 <span class="label label-default">
                   You are already a member of this team.
                 </span>
+              <% else %>
+                <%= link_to "Join", join_team_path(team), class: "btn btn-primary btn-xs", data: {confirm: "Are you sure you want to join this team? Joining this team removes you from all other teams"} %>
               <% end %>
             </td>
           </tr>

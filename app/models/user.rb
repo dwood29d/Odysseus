@@ -15,4 +15,12 @@ class User < ApplicationRecord
    return "#{first_name} #{last_name}".strip if (first_name || last_name)
    "Anonymous"
  end
+
+ def has_team?
+   return !self.team.nil?
+ end
+
+ def has_department?
+   return !self.department.nil?
+ end
 end

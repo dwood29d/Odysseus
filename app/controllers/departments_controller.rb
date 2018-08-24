@@ -20,6 +20,7 @@ class DepartmentsController < ApplicationController
 
   def show
     @department = Department.find(params[:id])
+    @department_users = @department.users
     # @department_challenges = Department.challenges
   end
 

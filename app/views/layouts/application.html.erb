@@ -34,8 +34,12 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Pages <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><%= link_to "My Profile", user_path(current_user) %></li>
-                  <li><%= link_to "My Team", team_path(current_user.team)  %></li>
-                  <li><%= link_to "My Department (coming soon)", "#"  %></li>
+                  <% if !current_user.team.nil? %>
+                    <li><%= link_to "My Team", team_path(current_user.team)  %></li>
+                  <% end %>
+                  <% if current_user.has_team? %>
+                    <li><%= link_to "My Department (coming soon)", "#"  %></li>
+                  <% end %>
                   <li role="separator" class="divider"></li>
                   <li><a href="#">Separated link</a></li>
                   <li role="separator" class="divider"></li>

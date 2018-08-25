@@ -1,5 +1,5 @@
 <h1 align="center"><%= "#{current_user.full_name}" %>'s Page</h1>
-
+<%= line_chart @user.user_exercises.group_by_day(:created_at).sum(:number_of_reps) %>
 <div class="row">
   <div class="col-md-6">
     <% if current_user.id == @user.id %>

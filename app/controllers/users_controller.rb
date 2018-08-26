@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def join_team
     @team = Team.find(params[:id])
     current_user.team = @team
+    current_user.department = nil
 
     if current_user.save
       flash[:success] = "Successfully joined team!"

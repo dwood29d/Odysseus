@@ -8,6 +8,10 @@ class Team < ApplicationRecord
             uniqueness: {case_sensitive: false },
             length: { minimum: 3, maximum: 50 }
 
+  def top_performers
+    self.users.select('SUM(number_of_reps) as total').order('total desc').limit(10)
+  end
+
   def self.search(param)
     param.strip!
     param.downcase!

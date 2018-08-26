@@ -8,7 +8,7 @@
           <thead>
             <tr>
               <th colspan="4" class="page-header">
-                <h2>Departments of <%= "#{@team.name}" %></h2>
+                <h2 align="center">Departments of <%= "#{@team.name}" %></h2>
               </th>
             </tr>
             <tr>
@@ -43,6 +43,7 @@
     <% end %>
   </div>
   <div class="col-md-6">
-    <h2 align="center">Current Challenge Progress</h2>
+    <h2 align="center" class="team-show-2">This team has done <span><%= @team.user_exercises.sum(:number_of_reps) %></span> total reps!</h2>
+    <%= pie_chart @team.user_exercises.group(:user).sum(:number_of_reps) %>
   </div>
 </div>

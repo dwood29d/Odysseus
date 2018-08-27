@@ -1,2 +1,16 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<header>
+  <div class="center jumbotron jumbotron-fluid">
+    <h1 class="welcome">Welcome to MassiveMonth</h1>
+    <h2 class="welcome">Some fancy catchphrase</h2>
+    <% if !current_user %>
+      <%= link_to('Sign Up', new_user_registration_path, class: 'btn btn-primary btn-lg', title: 'Sign Up') %>
+    <% else %>
+      <%= link_to('My Profile', user_path(current_user), class: 'btn btn-primary btn-lg', title: 'My Profile') %>
+    <% end %>
+  </div>
+</header>
+<section>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultricies nisi eget risus ultrices auctor. Vivamus sagittis quis felis quis efficitur. Proin sed tincidunt felis, vitae molestie erat. Maecenas ut ante dui. Maecenas lobortis, felis vitae lobortis vehicula, arcu est dignissim felis, non eleifend justo leo ut libero. Duis iaculis nisl leo, vel tempor mi dignissim vitae. Donec accumsan nunc ut pharetra laoreet. Praesent tempor tellus nec venenatis placerat. Morbi nisi sapien, aliquet in turpis sit amet, dignissim sagittis ligula. Mauris eros est, varius vitae est vel, blandit accumsan felis. Curabitur aliquam felis nec commodo hendrerit. Pellentesque a varius nulla. Duis viverra ipsum a magna pretium elementum. Mauris vel iaculis turpis. Donec scelerisque sodales varius. Quisque non dapibus massa, sed vulputate ex.</p><br />
+
+  <p>Vivamus commodo pretium sem in interdum. Quisque interdum elementum facilisis. Nulla mattis, libero in pharetra iaculis, risus enim porta mauris, id pretium metus risus ut arcu. Sed rutrum lorem vitae libero cursus accumsan eu in augue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse id rutrum nibh, vitae eleifend risus. Donec massa libero, scelerisque ac iaculis non, luctus lacinia quam. Sed non leo magna. Cras ultricies elit ac diam sagittis, id vehicula neque pulvinar. Vivamus nisi elit, accumsan vitae condimentum non, maximus id eros. Proin tincidunt posuere vestibulum. Cras a venenatis mi, sit amet lacinia elit. Proin sed ligula vitae sem facilisis ornare. Cras lacinia sem sed mauris scelerisque consectetur.</p>
+</section>

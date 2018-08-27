@@ -8,4 +8,10 @@ class Department < ApplicationRecord
   validates :name, presence: true,
             length: { minimum: 3, maximum: 50 }
 
+  def top_performers
+    self.users.select('SUM(number_of_reps) as total').order('total desc').limit(10)
+  end
+
+
+
 end

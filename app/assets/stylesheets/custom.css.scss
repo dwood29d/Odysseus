@@ -75,6 +75,41 @@
   padding-left: 15px !important;
 }
 
+/* Welcome Pages */
+
+/* Welcome Index */
+
+.jumbotron {
+  background-image: asset-url('kyle-johnson-389070-unsplash.jpg');
+  background-size: cover;
+  height: 550px;
+}
+
+.center {
+  text-align: center;
+}
+
+.jumbotron .welcome {
+  color: white;
+  padding-bottom: 50px;
+}
+
+/* Department Pages */
+
+/* Department Show Page */
+
+.user-list {
+  border-top: 1px solid #EAEAEA;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.user-meta-details {
+  border-bottom: 1px solid #EAEAEA;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 /* Team Pages */
 
 /* Team Show Page */

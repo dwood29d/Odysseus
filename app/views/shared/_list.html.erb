@@ -3,10 +3,10 @@
     <div class="col-md-8 col-md-offset-2">
       <div class="well well-lg">
         <div class="user-name">
-          <%= user.full_name %>
+          <p><strong><%= user.full_name %></strong></p>
         </div>
         <div class="user-list">
-          Total Number of Reps: [To Be Added Later]
+          Total Number of Reps: <%= user.user_exercises.sum(:number_of_reps) %> reps completed since joining!
           <div class="user-meta-details">
             <small>User Since: <%= time_ago_in_words(user.created_at) %> ago</small>
           </div>

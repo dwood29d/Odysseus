@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
 
+  before_action :require_same_team, only: [:show]
+
   def show
-    @user = current_user
+    @user = User.find(params[:id])
     @exercises = Exercise.all
   end
 
@@ -45,4 +47,14 @@ class UsersController < ApplicationController
     end
     redirect_to user_path(@user)
   end
+
+  private
+  def require_same_team
+    @user = User.find(params[:id])
+    if current_user.team != @user.team # && !current_user.admin?
+      flash[:danger] = "You may only access your team members"
+      redirect_to root_path
+    end
+  end
+
 end

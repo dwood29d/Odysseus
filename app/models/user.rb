@@ -16,6 +16,10 @@ class User < ApplicationRecord
    "Anonymous"
  end
 
+ # def most_massive_day
+ #   self.user_exercises.group_by_day(:created_at).sum(:number_of_reps).order()
+ # end
+
  def has_team?
    return !self.team.nil?
  end

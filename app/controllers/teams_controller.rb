@@ -14,7 +14,7 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
-    binding.pry
+    # binding.pry
     if @team.save
       flash.now[:success] = "Congratulations! #{@team.name} has successfully been created!"
       redirect_to team_path(@team)

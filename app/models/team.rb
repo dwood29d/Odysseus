@@ -13,7 +13,18 @@ class Team < ApplicationRecord
   end
 
   def top_department
-    self.department
+    self.department.find_by_sql("SELECT users.id, users.first_name, users.last_name, SUM(user_exercises.number_of_reps) AS total FROM users INNER JOIN user_exercises on user_exercises.user_id = users.id GROUP BY users.id ORDER BY total DESC LIMIT 1")
+  end
+
+  def most_massive_day
+    # Returns a hash with the day and the value
+    day = self.user_exercises.group_by_day(:created_at).sum(:number_of_reps).max_by{ |k, v| v}
+    return day[0]
+  end
+
+  def most_reps
+    reps = self.user_exercises.group_by_day(:created_at).sum(:number_of_reps).max_by{ |k, v| v}
+    return reps[1]
   end
 
   def self.search(param)
